@@ -1,15 +1,17 @@
 "use string";
 
-const weatherMap = new Map([
+// Необходимо поменять местами ключи и значения в следующем map
+let weatherMap = new Map([
   ["London", 10],
   ["Moscow", 7],
   ["Paris", 14],
 ]);
 
-for (const [key, value] of weatherMap) {
-  console.log(key, value);
-}
+// const swappedWeatherMap = new Map();
+// for (const [key, value] of weatherMap) {
+//   swappedWeatherMap.set(value, key);
+// }
+// console.log(swappedWeatherMap);
 
-console.log([...weatherMap]);
-console.log(weatherMap.keys());
-console.log(weatherMap.values());
+weatherMap = new Map([...weatherMap].map((el) => el.reverse()));
+console.log(weatherMap);
