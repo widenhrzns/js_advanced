@@ -1,33 +1,19 @@
 "use string";
 
-const weatherMap = new Map();
-weatherMap.set("London", "10").set("Moscow", "7"); // наполнение map (можно чейнить тк возвращает map)
+const weatherMap = new Map([
+  ["London", "10"],
+  ["Moscow", "7"],
+]);
 
 console.log(weatherMap);
 
-console.log(weatherMap.get("Moscow"));
-console.log(weatherMap.get("not found"));
+const weatherObject = {
+  london: 10,
+  moscow: 7,
+  paris: 14,
+};
 
-console.log(weatherMap.has("Moscow"));
-console.log(weatherMap.has("not found"));
+console.log(Object.entries(weatherObject));
 
-weatherMap.delete("London"); // нельзя чейнить тк возвращает не map а true/false
-console.log(weatherMap);
-
-// weatherMap.clear();
-// console.log(weatherMap);
-
-const array = [1, 2, 3];
-
-weatherMap
-  .set(1, 5)
-  .set(true, "yes")
-  .set(false, "no")
-  .set(array, "array")
-  .set({ a: 1 }, { b: 1 });
-console.log(weatherMap);
-
-console.log(weatherMap.size);
-
-console.log(weatherMap.get(array));
-console.log(weatherMap.get({ a: 1 }));
+const weatherMap2 = new Map(Object.entries(weatherObject));
+console.log(weatherMap2);
