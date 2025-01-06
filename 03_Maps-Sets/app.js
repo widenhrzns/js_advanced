@@ -1,19 +1,15 @@
 "use string";
 
 const weatherMap = new Map([
-  ["London", "10"],
-  ["Moscow", "7"],
+  ["London", 10],
+  ["Moscow", 7],
+  ["Paris", 14],
 ]);
 
-console.log(weatherMap);
+for (const [key, value] of weatherMap) {
+  console.log(key, value);
+}
 
-const weatherObject = {
-  london: 10,
-  moscow: 7,
-  paris: 14,
-};
-
-console.log(Object.entries(weatherObject));
-
-const weatherMap2 = new Map(Object.entries(weatherObject));
-console.log(weatherMap2);
+console.log([...weatherMap]);
+console.log(weatherMap.keys());
+console.log(weatherMap.values());
