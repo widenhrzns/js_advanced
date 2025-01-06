@@ -1,4 +1,4 @@
-"use string";
+"use strict";
 
 let a = { a: 1 };
 let b = { b: 2 };
