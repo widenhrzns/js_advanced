@@ -1,17 +1,31 @@
 "use string";
 
-// Необходимо поменять местами ключи и значения в следующем map
-let weatherMap = new Map([
-  ["London", 10],
-  ["Moscow", 7],
-  ["Paris", 14],
-]);
+const map = new WeakMap();
 
-// const swappedWeatherMap = new Map();
-// for (const [key, value] of weatherMap) {
-//   swappedWeatherMap.set(value, key);
-// }
-// console.log(swappedWeatherMap);
+let a = { a: 1 };
+let b = { b: 1 };
 
-weatherMap = new Map([...weatherMap].map((el) => el.reverse()));
-console.log(weatherMap);
+map.set(a, "testA").set(b, "testB");
+
+console.log(map.get(a));
+console.log(map.has(a));
+console.log(map);
+
+a = null;
+console.log(map);
+
+//////////////////////////////
+let cache = new WeakMap();
+
+function getValue(obj) {
+  if (!cache.has(obj)) {
+    const res = 1;
+    cache.set(obj, res);
+  }
+  return cache.get(obj);
+}
+
+const res = getValue(b);
+console.log(res);
+const res2 = getValue(b);
+console.log(res2);
