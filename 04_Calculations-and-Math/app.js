@@ -1,12 +1,10 @@
 "use strict";
 
-/* 
-    Написать функцию, которая принимает min и max,
-    и возвращает случайное целое число между ними, включая их
-*/
+const bigNum1 = 350500000;
+const bigNum2 = 350_500_000;
+console.log(bigNum1 == bigNum2);
 
-function randomNumber(min, max) {
-  return Math.round(Math.random() * (max - min) + min);
-}
-
-console.log(randomNumber(15, 20));
+console.log(Number("350_500_000"));
+console.log(Number("350500000"));
+console.log(Number.parseInt("350_500_000"));
+console.log(Number.parseFloat("350_500_000.5"));
