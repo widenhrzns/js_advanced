@@ -1,33 +1,33 @@
 "use strict";
 
-const options1 = {
-  style: "currency",
-  currency: "RUB",
-  //   useGrouping: false,
-};
+/* 
+    Напишите функцию, которая принимает 3 параметра:
+    -Сумма
+    -Валюта исходная
+    -Валюта для конвертации
+    И возврщает строку уже сконвертированной суммы с постфиксом валюты.
+    Если не смог, то null
+*/
 
-const options2 = {
-  style: "currency",
-  currency: "USD",
-};
-console.log(new Intl.NumberFormat("ru-RU", options1).format(23000));
-console.log(new Intl.NumberFormat("en-US", options2).format(23000));
-// console.log(new Intl.NumberFormat("ar-SY", options2).format(23000));
+function convert(sum, initialCurrency, convertCurrency) {
+  const allCurrencies = [
+    { name: "USD", multiplication: 1 },
+    { name: "RUB", multiplication: 0.001 },
+    { name: "EUR", multiplication: 1.03 },
+  ];
+  const initial = allCurrencies.find(
+    (currency) => currency.name === initialCurrency
+  );
+  const convert = allCurrencies.find(
+    (currency) => currency.name === convertCurrency
+  );
+  if (!initial || !convert) {
+    return null;
+  }
+  return new Intl.NumberFormat("ru-RU", {
+    style: "currency",
+    currency: convertCurrency,
+  }).format((sum * initial.multiplication) / convert.multiplication);
+}
 
-const options3 = {
-  style: "decimal",
-};
-console.log(new Intl.NumberFormat("ru-RU", options3).format(10000));
-
-const options4 = {
-  style: "percent",
-};
-console.log(new Intl.NumberFormat("ru-RU", options4).format(0.8));
-
-const options5 = {
-  style: "unit",
-  unit: "celsius",
-};
-console.log(new Intl.NumberFormat("ru-RU", options5).format(15));
-
-// https://developer.mozilla.org/ru/docs/Web/JavaScript/Reference/Global_Objects/Intl/NumberFormat
+console.log(convert(10, "USD", "RUB"));
