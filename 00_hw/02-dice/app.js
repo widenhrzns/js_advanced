@@ -1,7 +1,9 @@
 "use strict";
 
+const availableDices = ["d4", "d6", "d8", "d10", "d12", "d16", "d20"];
+
 function diceRoller(type) {
-  const isCorrect = type[0] === "d";
+  const isCorrect = availableDices.some((dice) => dice === type);
   if (!isCorrect) {
     return "Dice is not supported";
   }
