@@ -1,7 +1,9 @@
 "use strict";
 
-console.log(performance.now());
+const interval = setInterval(() => {
+  console.log(new Date());
+}, 1000);
 
 setTimeout(() => {
-  console.log(performance.now());
-}, 1000);
+  clearInterval(interval);
+}, 5000);
