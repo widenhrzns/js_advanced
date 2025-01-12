@@ -1,15 +1,22 @@
 "use strict";
 
-// const first = new Date(2024, 10, 4);
-// const second = new Date(2024, 10, 3);
+/* 
+    Сделать функцию, которая принимает пользователя и 
+    проверяет, есть ли у него сегодня день рождения или нет
+*/
 
-// console.log(first > second);
-// console.log(first.getTime() > second.getTime());
+const user1 = {
+  name: "Vasya",
+  birthday: "11/12/2022",
+};
 
-const first = new Date(2024, 10, 4);
-const second = new Date(2024, 10, 4);
+function isBirthday(user) {
+  const today = new Date();
+  const birthday = new Date(user.birthday);
+  return (
+    today.getDate() === birthday.getDate() &&
+    today.getMonth() === birthday.getMonth()
+  );
+}
 
-console.log(first == second); // неравны тк сравниваются не значения а ссылки на объекты
-console.log(first === second);
-console.log(first.getTime() === second.getTime());
-console.log(Number(first) === Number(second));
+console.log(isBirthday(user1));
