@@ -17,16 +17,7 @@ const page = {
   secondTitle: document.querySelector(".title_second"),
 };
 
-/* data */
-const dateTitles = {
-  month: ["месяц", "месяца", "месяцев"],
-  day: ["день", "дня", "дней"],
-  hour: ["час", "часа", "часов"],
-  minute: ["минута", "минуты", "минут"],
-  second: ["секунда", "секунды", "секунд"],
-};
-
-/* utils */
+/* util */
 function getDates() {
   const now = new Date();
   const nextYear = new Date(now.getFullYear() + 1, 0, 1, 0, 0, -1);
@@ -39,6 +30,19 @@ function getDates() {
   };
 }
 
+/* formatter */
+function titleMaker(number, type) {
+  const title = new Intl.RelativeTimeFormat("ru-RU", { numeric: "always" })
+    .format(number, type)
+    .replace("через", "")
+    .replace("назад", "")
+    .trim()
+    .slice(2)
+    .trim();
+  return title;
+}
+
+/* output */
 function timerOutput() {
   const timeLeft = getDates();
   const nextYear = new Date().getFullYear() + 1;
@@ -56,17 +60,6 @@ function timerOutput() {
   page.minuteTitle.innerText = titleMaker(timeLeft.minute, "minute");
   page.secondNumber.innerText = timeLeft.second;
   page.secondTitle.innerText = titleMaker(timeLeft.second, "second");
-}
-
-function titleMaker(number, type) {
-  const title = new Intl.RelativeTimeFormat("ru-RU", { numeric: "always" })
-    .format(number, type)
-    .replace("через", "")
-    .replace("назад", "")
-    .trim()
-    .slice(2)
-    .trim();
-  return title;
 }
 
 /* app */
