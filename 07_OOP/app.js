@@ -1,28 +1,60 @@
 "use strict";
 
-const Book = function (title, author) {
-  this.author = author;
-  this.title = title;
-  this.isRead = false;
+/* 
+    Реализовать на функциях и прототипах корзину товаров с методами
+    - Добавить товар
+    - Увеличить число товаров 
+    - Уменишить число товаров (удалить их, если 0)
+*/
+const product1 = { id: 1, name: "Bread", count: 1 };
+const product2 = { id: 2, name: "Semen", count: 1 };
+const product3 = { id: 3, name: "Fingers", count: 1 };
+
+const Cart = function () {
+  this.products = [];
 };
 
-Book.prototype.read = function () {
-  this.isRead = true;
+Cart.prototype.addProduct = function (productAdded) {
+  if (this.products.find((product) => product.id === productAdded.id)) {
+    return;
+  }
+  this.products.push(productAdded);
 };
 
-Book.prototype.cover = "Paper";
+Cart.prototype.increaseAmount = function (id) {
+  this.products = this.products.map((product) => {
+    if (product.id === id) {
+      product.count += 1;
+      return product;
+    }
+    return product;
+  });
+};
 
-const lordOfTheRing = new Book("Lord of the ring", "Tolkien");
-console.log(lordOfTheRing);
+Cart.prototype.decreaseAmount = function (id) {
+  this.products = this.products
+    .map((product) => {
+      if (product.id === id) {
+        product.count -= 1;
+        return product;
+      }
+      return product;
+    })
+    .filter((product) => product.count > 0);
+};
 
-lordOfTheRing.read();
-console.log(lordOfTheRing);
+const cart = new Cart();
 
-console.log(lordOfTheRing.__proto__);
-console.log(lordOfTheRing.__proto__ === Book.prototype);
-console.log(Book.prototype.isPrototypeOf(lordOfTheRing));
-console.log(Book.prototype.isPrototypeOf(Book));
+cart.addProduct(product1);
+cart.addProduct(product2);
+cart.addProduct(product3);
 
-console.log(lordOfTheRing.cover);
-console.log(lordOfTheRing.hasOwnProperty("cover"));
-console.log(lordOfTheRing.hasOwnProperty("author"));
+cart.increaseAmount(3);
+cart.increaseAmount(1);
+cart.increaseAmount(1);
+
+cart.decreaseAmount(3);
+cart.decreaseAmount(3);
+cart.decreaseAmount(2);
+
+console.log(cart);
