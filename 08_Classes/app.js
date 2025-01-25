@@ -1,30 +1,45 @@
 "use strict";
 
-const Book = function (title, author) {
-  this.title = title;
-  this.author = author;
-  this.isRead = false;
+const task = {
+  title: "Task1",
+  dueTo: new Date("2025/01/01"),
+
+  get isOverdue() {
+    return this.dueTo <= new Date();
+  },
+
+  set isOverdue(isOverdueTask) {
+    if (isOverdueTask) {
+      this.dueTo = new Date();
+    }
+  },
 };
 
-Book.prototype.read = function () {
-  this.isRead = true;
-};
+console.log(task.isOverdue);
 
-/* e6 classes */
-class BookClass {
-  isRead = false;
+task.isOverdue = true;
+console.log(task);
 
-  constructor(title, author) {
+///
+
+class Task {
+  constructor(title, dueDate) {
     this.title = title;
-    this.author = author;
+    this.dueDate = dueDate;
   }
 
-  read() {
-    this.isRead = true;
+  get isOverdue() {
+    return this.dueDate <= new Date();
+  }
+
+  set dueDate(date) {
+    if (date < new Date()) {
+      return;
+    }
+    this._dueDate = date;
   }
 }
 
-const lotr = new BookClass("lotr", "Tolkien");
-console.log(lotr);
-console.log(lotr.__proto__);
-console.log(lotr instanceof BookClass);
+const newTask = new Task("Task2", new Date());
+console.log((newTask.dueDate = new Date("2026/01/01")));
+console.log(newTask);
