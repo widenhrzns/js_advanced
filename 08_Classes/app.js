@@ -1,27 +1,29 @@
 "use strict";
 
-class Test {
-  static a = 1;
-  static hello() {
-    console.log("Hello");
+class Car {
+  #vin = 6;
+  speed;
+
+  constructor() {
+    // delete this.#vin // не сможем
+    this.#test2 = 5;
   }
 
+  #changeVin() {
+    console.log("changed");
+  }
+
+  test() {
+    // проверка
+    this.#changeVin();
+  }
+
+  static #field = 3;
+
   static {
-    let b = 5;
-    this.a = 5;
+    this.#field = 5;
   }
 }
 
-// const test = new Test();
-// test.hello();
-
-Test.hello();
-console.log(Test.a);
-
-///
-const Test2 = function () {};
-Test2.hello = function () {
-  console.log("Hello");
-};
-
-Test2.hello();
+const car = new Car();
+car.test();
