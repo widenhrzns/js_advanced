@@ -5,7 +5,7 @@ class Car {
   #model;
   #mileage;
 
-  constructor(brand, model, mileage) {
+  constructor(brand, model, mileage = 0) {
     this.#brand = brand;
     this.#model = model;
     this.mileage = mileage;
@@ -45,6 +45,5 @@ car1.info();
 console.log(car1);
 
 const car2 = new Car("audi", "q3");
-car2.info();
 car2.mileage = 10;
 car2.info();
