@@ -1,29 +1,29 @@
 "use strict";
 
-class Film {
-  #name;
-  #author;
-  rating;
-  #length;
+const Book = function (title, author) {
+  this.title = title;
+  this.author = author;
+};
 
-  constructor(name, author, length) {
-    this.#name = name;
-    this.#author = author;
-    this.#length = length;
-  }
+Book.prototype.buy = function () {
+  console.log("buy");
+};
 
-  get name() {
-    return this.#name;
-  }
+const AudioBook = function (title, author, lenMin) {
+  Book.call(this, title, author);
+  this.lenMin = lenMin;
+};
+AudioBook.prototype = Object.create(Book.prototype);
+AudioBook.prototype.constructor = AudioBook;
 
-  get author() {
-    return this.#author;
-  }
+AudioBook.prototype.log = function () {
+  console.log(`${this.title} - ${this.lenMin}`);
+};
 
-  get length() {
-    return this.#length;
-  }
-}
+const book = new AudioBook("ewfje", "Prrr", 120);
+book.log();
+book.buy();
+console.log(AudioBook.prototype.constructor);
 
-const film = new Film("djdiq", "Prrr", "90");
-console.log(film);
+console.log(book instanceof AudioBook);
+console.log(book instanceof Book);
