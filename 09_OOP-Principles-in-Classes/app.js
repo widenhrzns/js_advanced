@@ -1,56 +1,29 @@
 "use strict";
 
-/* const Book = function (title, author) {
-  this.title = title;
-  this.author = author;
-};
-
-Book.prototype.buy = function () {
-  console.log("buy");
-};
-
-const AudioBook = function (title, author, lenMin) {
-  Book.call(this, title, author);
-  this.lenMin = lenMin;
-};
-AudioBook.prototype = Object.create(Book.prototype);
-AudioBook.prototype.constructor = AudioBook;
-
-AudioBook.prototype.log = function () {
-  console.log(`${this.title} - ${this.lenMin}`);
-};
-
-const book = new AudioBook("ewfje", "Prrr", 120);
-book.log();
-book.buy();
-console.log(AudioBook.prototype.constructor);
-
-console.log(book instanceof AudioBook);
-console.log(book instanceof Book); */
-
 class Book {
   constructor(title, author) {
     this.title = title;
     this.author = author;
   }
 
-  buy() {
-    console.log("buy");
+  info() {
+    console.log(`${this.title} - ${this.author}`);
   }
 }
 
-class AudioBook extends Book {
-  constructor(title, author, lenMin) {
-    super(title, author); //метод вызывающий конструктор исходного класса
-    this.lenMin = lenMin;
+const book1 = new Book("kfoejkf", "Prrr");
+book1.info();
+
+class EBook extends Book {
+  constructor(title, author, pages) {
+    super(title, author);
+    this.pages = pages;
   }
 
-  log() {
-    console.log(`${this.title} - ${this.lenMin}`);
+  info() {
+    console.log(`${this.title} - ${this.author} - ${this.pages}`);
   }
 }
 
-const book = new AudioBook("ewkfow", "Prrr", 120);
-console.log(book);
-book.log();
-book.buy();
+const book2 = new EBook("fijfajf2", "Arrr", 357);
+book2.info();
