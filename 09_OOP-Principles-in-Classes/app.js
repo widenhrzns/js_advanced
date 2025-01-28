@@ -1,29 +1,61 @@
 "use strict";
 
-class Book {
-  constructor(title, author) {
-    this.title = title;
-    this.author = author;
+/*
+    Сделать класс врага со здоровьем и методом получения урона
+
+    Сделать класс меча, который имее силу и метод нанесения урона 
+
+    Сделать класс орка, который в 50% случаев не получит урон 
+*/
+
+class Enemy {
+  health;
+
+  constructor(health) {
+    this.health = health;
   }
 
-  info() {
-    console.log(`${this.title} - ${this.author}`);
-  }
-}
-
-const book1 = new Book("kfoejkf", "Prrr");
-book1.info();
-
-class EBook extends Book {
-  constructor(title, author, pages) {
-    super(title, author);
-    this.pages = pages;
-  }
-
-  info() {
-    console.log(`${this.title} - ${this.author} - ${this.pages}`);
+  takeDamage(damage) {
+    this.health -= damage;
   }
 }
 
-const book2 = new EBook("fijfajf2", "Arrr", 357);
-book2.info();
+class Sword {
+  constructor(damage) {
+    this.damage = damage;
+  }
+
+  dealDamage(enemy) {
+    enemy.takeDamage(this.damage);
+  }
+}
+
+class Ork extends Enemy {
+  miss;
+
+  constructor(health) {
+    super(health);
+    this.miss = 0.5;
+  }
+
+  takeDamage(damage) {
+    const random = Math.random();
+    if (random > this.miss) {
+      this.health -= damage;
+    }
+  }
+}
+
+const enemy = new Enemy(100);
+const ork = new Ork(100);
+const sword = new Sword(20);
+
+console.log(enemy);
+sword.dealDamage(enemy);
+console.log(enemy);
+
+console.log(ork);
+sword.dealDamage(ork);
+console.log(ork);
+sword.dealDamage(ork);
+console.log(ork);
