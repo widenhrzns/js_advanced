@@ -34,9 +34,7 @@ function getDates() {
 function titleMaker(number, type) {
   const title = new Intl.RelativeTimeFormat("ru-RU", { numeric: "always" })
     .format(number, type)
-    .replace("через", "")
-    .replace("назад", "")
-    .trim()
+    .replace("через ", "")
     .slice(2)
     .trim();
   return title;
