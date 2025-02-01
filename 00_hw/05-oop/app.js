@@ -37,20 +37,17 @@ Elf.prototype.cast = function () {
 };
 
 ///
-console.log(`---------------------------------`);
 const anon = new Character("человек", "Каэль", "ru");
 console.log(anon);
 anon.speak();
 
 ///
-console.log(`---------------------------------`);
 const ork = new Ork("зверь", "Грогар Железный Клык", "ru", "топор");
 console.log(ork);
 ork.speak();
 ork.hit();
 
 ///
-console.log(`---------------------------------`);
 const elf = new Elf("лесной", "Элисариэль", "ru", "moonbeam");
 console.log(elf);
 elf.speak();
