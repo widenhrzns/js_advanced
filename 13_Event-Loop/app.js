@@ -1,14 +1,57 @@
 "use strict";
 
-Promise.resolve("Instant").then((data) => console.log(data));
+// function wait(ms) {
+//   const { resolve, reject, promise } = Promise.withResolvers();
+//   setTimeout(() => {
+//     resolve();
+//   }, ms);
+//   return promise;
+// }
 
-const prom = new Promise((resolve) => {
-  console.log("Constructor");
-  for (let i = 0; i < 10000000000; i++) {}
-  setTimeout(() => {
-    resolve("Timer");
-  }, 1000);
-});
-prom.then((data) => console.log(data));
+// async function run() {
+//   console.log("start");
+//   await wait(2000);
+//   console.log("end");
+// }
 
-Promise.reject(new Error("Error")).catch((error) => console.error(error));
+// run();
+
+class Queue {
+  #messages = [];
+  #resolve;
+  #reject;
+  #promise;
+
+  constructor() {
+    const { resolve, reject, promise } = Promise.withResolvers();
+    this.#promise = promise;
+    this.#resolve = resolve;
+    this.#reject = reject;
+  }
+
+  add(msg) {
+    this.#messages.push(msg);
+    return this;
+  }
+
+  close() {
+    this.#resolve(this.#messages);
+  }
+
+  error(reason) {
+    this.#reject(reason);
+  }
+
+  subscribe() {
+    return this.#promise;
+  }
+}
+
+const queue = new Queue();
+const sub1 = queue.subscribe();
+sub1.then((data) => console.log(data)).catch((error) => console.error(error));
+const sub2 = queue.subscribe();
+sub2.then((data) => console.log(data)).catch((error) => console.error(error));
+
+// queue.add("msg1").add("msg2").close();
+queue.add("msg1").add("msg2").error("не получен полседний пакет");
