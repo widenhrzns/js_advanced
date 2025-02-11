@@ -1,57 +1,32 @@
 "use strict";
 
-// function wait(ms) {
-//   const { resolve, reject, promise } = Promise.withResolvers();
-//   setTimeout(() => {
-//     resolve();
-//   }, ms);
-//   return promise;
-// }
+/*
+    Сделать функцию myFetch, которая выполняет внутри XMLHttpRequest
+*/
 
-// async function run() {
-//   console.log("start");
-//   await wait(2000);
-//   console.log("end");
-// }
+function myFetch(url) {
+  return new Promise((resolve, reject) => {
+    const request = new XMLHttpRequest();
+    request.open("GET", url);
+    request.send();
 
-// run();
+    request.addEventListener("load", function () {
+      if (this.status >= 400) {
+        reject(new Error(`Error [${this.status}]`));
+      }
+      resolve(this.responseText);
+    });
 
-class Queue {
-  #messages = [];
-  #resolve;
-  #reject;
-  #promise;
+    request.addEventListener("error", function () {
+      reject(new Error(`Error [${this.status}]`));
+    });
 
-  constructor() {
-    const { resolve, reject, promise } = Promise.withResolvers();
-    this.#promise = promise;
-    this.#resolve = resolve;
-    this.#reject = reject;
-  }
-
-  add(msg) {
-    this.#messages.push(msg);
-    return this;
-  }
-
-  close() {
-    this.#resolve(this.#messages);
-  }
-
-  error(reason) {
-    this.#reject(reason);
-  }
-
-  subscribe() {
-    return this.#promise;
-  }
+    request.addEventListener("timeout", function () {
+      reject(new Error("Timeout"));
+    });
+  });
 }
 
-const queue = new Queue();
-const sub1 = queue.subscribe();
-sub1.then((data) => console.log(data)).catch((error) => console.error(error));
-const sub2 = queue.subscribe();
-sub2.then((data) => console.log(data)).catch((error) => console.error(error));
-
-// queue.add("msg1").add("msg2").close();
-queue.add("msg1").add("msg2").error("не получен полседний пакет");
+myFetch("https://dummyjson.com/productss")
+  .then((data) => console.log(data))
+  .catch((error) => console.log(error));
