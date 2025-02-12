@@ -34,3 +34,4 @@ async function findLocation() {
 }
 
 findLocation();
+findLocation();
