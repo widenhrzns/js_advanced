@@ -1,33 +1,39 @@
 "use strict";
 
-async function getProducts() {
-  try {
-    const productsResponse = await fetch("https://dummyjson.com/productss");
-    if (!productsResponse.ok) {
-      throw new Error(productsResponse.status);
-    }
-    const { products } = await productsResponse.json();
-    console.log(products);
-    // throw new Error("Ошибка");
+/*
+    Получить геолокацию пользователя и по координатам определить 
+    город, отправив запрос: 
+    https://api.bigdatacloud.net/data/reverse-geocode-client?latitude=00&longitude=00
+*/
 
-    const productResponse = await fetch(
-      "https://dummyjson.com/products/" + products[0].id
+function getCoords() {
+  return new Promise((resolve, reject) => {
+    navigator.geolocation.getCurrentPosition(
+      ({ coords }) => {
+        resolve({
+          latitude: coords.latitude,
+          longitude: coords.longitude,
+        });
+      },
+      (error) => reject(new Error(error.message))
     );
-    const product = await productResponse.json();
-    console.log(product);
+  });
+}
+
+async function findLocation() {
+  try {
+    const { latitude, longitude } = await getCoords();
+    const response = await fetch(
+      `https://api.bigdatacloud.net/data/reverse-geocode-client?latitude=${latitude}&longitude=${longitude}`
+    );
+    if (!response.ok) {
+      throw new Error(response.status);
+    }
+    const data = await response.json();
+    console.log(data);
   } catch (error) {
     console.warn(error);
-  } finally {
-    console.log("Finally");
   }
 }
 
-try {
-  const a = 5;
-  a = 4;
-} catch (error) {
-  console.error(error);
-}
-
-getProducts();
-console.log("End");
+findLocation();
