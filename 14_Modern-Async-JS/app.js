@@ -1,34 +1,20 @@
 "use strict";
 
-/*
-    Получить геолокацию пользователя и по координатам определить 
-    город, отправив запрос: 
-    https://api.bigdatacloud.net/data/reverse-geocode-client?latitude=00&longitude=00
-*/
-
-function getCoords() {
-  return new Promise((resolve, reject) => {
-    navigator.geolocation.getCurrentPosition(
-      ({ coords }) => resolve(coords),
-      (error) => reject(new Error(error.message))
-    );
-  });
-}
-
-async function findLocation() {
-  try {
-    const { latitude, longitude } = await getCoords();
-    const response = await fetch(
-      `https://api.bigdatacloud.net/data/reverse-geocode-client?latitude=${latitude}&longitude=${longitude}`
-    );
-    if (!response.ok) {
-      throw new Error(response.status);
-    }
-    const data = await response.json();
-    console.log(data);
-  } catch (error) {
-    console.warn(error);
+class ProductRepository {
+  async getProducts() {
+    const response = await fetch("https://dummyjson.com/products");
+    console.log(await response.json());
+    return this;
   }
 }
 
-findLocation();
+const rep1 = new ProductRepository();
+rep1.getProducts();
+
+const asyncArrow = async () => {
+  const response = await fetch("https://dummyjson.com/products");
+  console.log(await response.json());
+  return this;
+};
+
+asyncArrow();
