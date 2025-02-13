@@ -1,20 +1,25 @@
 "use strict";
 
-class ProductRepository {
-  async getProducts() {
-    const response = await fetch("https://dummyjson.com/products");
-    console.log(await response.json());
-    return this;
-  }
-}
-
-const rep1 = new ProductRepository();
-rep1.getProducts();
-
 const asyncArrow = async () => {
-  const response = await fetch("https://dummyjson.com/products");
-  console.log(await response.json());
-  return this;
+  try {
+    const response = await fetch("https://dummyjson.com/products");
+    const data = await response.json();
+    return data;
+  } catch (error) {
+    console.warn(error);
+    throw new Error(error);
+  }
 };
 
-asyncArrow();
+// console.log("1");
+// asyncArrow()
+//   .then((data) => console.log(data))
+//   .catch((error) => console.warn(error))
+//   .finally(() => console.log("2"));
+
+(async () => {
+  console.log(1);
+  const res = await asyncArrow();
+  console.log(res);
+  console.log(2);
+})();
