@@ -4,12 +4,14 @@
 
 .wrapper {
   display: flex;
-  justify-content: center;
+  flex-direction: column;
+  align-items: center;
+  gap: 20px;
   padding: 20px;
   border: 1px solid #000;
 }
 
-.inner {
+.wrapper > div {
   padding: 20px;
   border: 1px solid #000;
   background: none;
