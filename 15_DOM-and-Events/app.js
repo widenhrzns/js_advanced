@@ -1,11 +1,5 @@
 "use strict";
 
-/*
-    Динамически создать N элементов с текстом и поле
-    для поиска. При вводе в поле, веделять элементы, которые 
-    содержат введенный текст.
-*/
-
 const text = document.querySelector(".text");
 const search = document.querySelector(".search");
 
