@@ -1,18 +1,27 @@
 "use strict";
 
 const wrapper = document.querySelector(".wrapper");
+console.log(wrapper);
 
-for (let i = 0; i < 100; i++) {
-  const el = document.createElement("div");
-  el.innerHTML = `User id: ${i}`;
-  el.setAttribute("data-id", i);
-  //   el.addEventListener("click", () => {
-  //     console.log(`Deleted user ${i}`);
-  //   });
-  wrapper.append(el);
-}
+const inner = wrapper.querySelector(".inner");
+console.log(inner.childNodes);
+console.log(inner.children);
+console.log([...inner.children][0]);
 
-wrapper.addEventListener("click", (event) => {
-  const i = event.target.getAttribute("data-id");
-  console.log(`Deleted user ${i}`);
-});
+console.log(inner.parentElement);
+console.log(inner.parentNode);
+
+const button = inner.querySelector(".button");
+console.log(button.closest(".wrapper")); // возврщает ближайшего родителя (вверх по дереву)
+console.log(button.closest(".button"));
+console.log(button.closest("a"));
+console.log(button.closest(".test"));
+
+// элементы на том же уровне
+console.log(button.previousElementSibling);
+console.log(button.previousSibling);
+
+console.log(button.nextElementSibling);
+console.log(button.nextSibling);
+
+console.log([...button.parentElement.children].at(-1));
