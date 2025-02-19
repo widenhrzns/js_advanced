@@ -1,27 +1,19 @@
 "use strict";
 
-const wrapper = document.querySelector(".wrapper");
-console.log(wrapper);
+// когда загрзился контент документа
+document.addEventListener("DOMContentLoaded", function (event) {
+  console.log("DOMContentLoaded");
+  console.log(event);
+});
 
-const inner = wrapper.querySelector(".inner");
-console.log(inner.childNodes);
-console.log(inner.children);
-console.log([...inner.children][0]);
+// загрузилось все
+window.addEventListener("load", function (event) {
+  console.log("load");
+  console.log(event);
+});
 
-console.log(inner.parentElement);
-console.log(inner.parentNode);
-
-const button = inner.querySelector(".button");
-console.log(button.closest(".wrapper")); // возврщает ближайшего родителя (вверх по дереву)
-console.log(button.closest(".button"));
-console.log(button.closest("a"));
-console.log(button.closest(".test"));
-
-// элементы на том же уровне
-console.log(button.previousElementSibling);
-console.log(button.previousSibling);
-
-console.log(button.nextElementSibling);
-console.log(button.nextSibling);
-
-console.log([...button.parentElement.children].at(-1));
+// перед тем как страница выгружается (например, при переходе на другую страницу спрашивает уверен ли есть не сохраненные данные)
+window.addEventListener("beforeunload", function (event) {
+  event.preventDefault();
+  event.returnValue = "";
+});
