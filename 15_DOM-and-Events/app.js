@@ -1,20 +1,13 @@
 "use strict";
 
-function generate(event) {
-  console.log(event.target.getBoundingClientRect());
+const button = document.querySelector(".button");
 
-  console.log(`X OffSet: ${window.pageXOffset}`);
-  console.log(`Y OffSet: ${window.pageYOffset}`);
-  console.log(`clientWidth: ${document.documentElement.clientWidth}`);
-  console.log(`clientHeight: ${document.documentElement.clientHeight}`);
+const eventHandler = function (event) {
+  console.log("event1");
+};
 
-  const el = document.querySelector(".down");
-  const rect = el.getBoundingClientRect();
-  console.log(el.getBoundingClientRect());
-
-  window.scrollTo({
-    left: window.pageXOffset + rect.left,
-    top: window.pageXOffset + rect.top,
-    behavior: "smooth",
-  });
-}
+button.addEventListener("mouseover", eventHandler);
+button.addEventListener("click", (event) => {
+  console.log("event2");
+  button.removeEventListener("click", eventHandler);
+});
