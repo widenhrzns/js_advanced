@@ -1,11 +1,15 @@
-"use strict";
-
-function add(first, second) {
+export function add(first, second) {
   return first + second;
 }
 
-function sub(first, second) {
+export function sub(first, second) {
   return first - second;
 }
 
-module.exports = { add, sub };
+// console.log("first");
+
+setTimeout(() => {
+  add = function (first, second) {
+    return first * second;
+  };
+}, 2000);
