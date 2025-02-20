@@ -5,9 +5,10 @@ export function add(first, second) {
 export function sub(first, second) {
   return first - second;
 }
-async function getProducts() {
-  const response = await fetch("https://dummyjson.com/products");
-  return response.json();
+
+export function div(first, second) {
+  return first / second;
 }
 
-export const res = await getProducts();
+const a = 1;
+console.log(a);
