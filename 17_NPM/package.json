@@ -1,0 +1,23 @@
+{
+  "name": "book-app",
+  "version": "1.0.0",
+  "description": "cool book app test",
+  "main": "app.js",
+  "scripts": {
+    "live-s": "live-server",
+    "test": "echo \"Error: no test specified\" && exit 1"
+  },
+  "repository": {
+    "type": "git",
+    "url": "git+ssh://git@github.com/widenhrzns/js_advanced.git"
+  },
+  "keywords": [
+    "books"
+  ],
+  "author": "Ivan Zh",
+  "license": "ISC",
+  "bugs": {
+    "url": "https://github.com/widenhrzns/js_advanced/issues"
+  },
+  "homepage": "https://github.com/widenhrzns/js_advanced#readme"
+}
