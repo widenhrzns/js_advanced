@@ -9,8 +9,6 @@ body {
 }
 
 .wrapper {
-  margin: 60px auto;
-  width: 820px;
   display: flex;
   justify-content: center;
 }

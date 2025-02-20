@@ -1,11 +1,12 @@
 "use strict";
 
 const game = document.querySelector(".game");
+let gameData = JSON.parse(localStorage.getItem("gameData")) || { score: 0 };
 
 function renderTitle() {
   const score = document.createElement("div");
   score.classList.add("game__title");
-  score.innerHTML = ` SCORE: <span class="title__score">0</span>`;
+  score.innerHTML = ` SCORE: <span class="title__score">${gameData.score}</span>`;
   game.append(score);
 }
 

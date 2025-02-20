@@ -1,8 +1,7 @@
 "use strict";
 
 const buttons = document.querySelector(".game__buttons");
-const score = document.querySelector(".title__score");
-let count = 0;
+const titleScore = document.querySelector(".title__score");
 
 function buttonClick(event) {
   const button = event.target;
@@ -18,8 +17,9 @@ function buttonClick(event) {
 
   button.classList.add("button_active");
   button.innerText = "Pressed!";
-  count++;
-  score.innerText = count;
+  gameData.score++;
+  titleScore.innerText = gameData.score;
+  localStorage.setItem("gameData", JSON.stringify(gameData));
 }
 
 buttons.addEventListener("click", (event) => {
