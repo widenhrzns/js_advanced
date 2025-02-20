@@ -1,11 +1,8 @@
 "use strict";
 
-import { add, sub } from "./calc.js";
-
-// console.log("second");
+import { add, sub, res } from "./calc.js";
 
 console.log(sub(1, 3));
 
-setInterval(() => {
-  console.log(add(1, 3));
-}, 1000);
+console.log(res);
+console.log(1);

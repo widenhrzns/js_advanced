@@ -5,11 +5,9 @@ export function add(first, second) {
 export function sub(first, second) {
   return first - second;
 }
+async function getProducts() {
+  const response = await fetch("https://dummyjson.com/products");
+  return response.json();
+}
 
-// console.log("first");
-
-setTimeout(() => {
-  add = function (first, second) {
-    return first * second;
-  };
-}, 2000);
+export const res = await getProducts();
