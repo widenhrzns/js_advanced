@@ -14,7 +14,7 @@ async function getProduct(id) {
 
 async function customRace(promiseArray) {
   return new Promise((resolve, reject) => {
-    promiseArray.map((promise) => {
+    promiseArray.forEach((promise) => {
       Promise.resolve(promise).then(
         (data) => resolve(data),
         (error) => reject(error)
