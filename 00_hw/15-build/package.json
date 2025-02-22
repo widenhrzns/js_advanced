@@ -1,0 +1,30 @@
+{
+  "name": "15-build",
+  "version": "1.0.0",
+  "description": "My first build (hw15 by PS)",
+  "main": "index.js",
+  "scripts": {
+    "build": "rollup scripts/index.js --file bundle.js --format iife",
+    "start": "live-server",
+    "test": "echo \"Error: no test specified\" && exit 1"
+  },
+  "repository": {
+    "type": "git",
+    "url": "git+https://github.com/widenhrzns/js_advanced.git"
+  },
+  "keywords": [
+    "first-build",
+    "15-build",
+    "hw"
+  ],
+  "author": "widenhrzns",
+  "license": "ISC",
+  "bugs": {
+    "url": "https://github.com/widenhrzns/js_advanced/issues"
+  },
+  "homepage": "https://github.com/widenhrzns/js_advanced#readme",
+  "devDependencies": {
+    "live-server": "^1.2.0",
+    "rollup": "^4.34.8"
+  }
+}
