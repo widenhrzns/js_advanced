@@ -4,7 +4,7 @@
   "description": "cool book app test",
   "main": "app.js",
   "scripts": {
-    "live-s": "live-server",
+    "build": "rollup",
     "test": "echo \"Error: no test specified\" && exit 1"
   },
   "repository": {
@@ -19,5 +19,11 @@
   "bugs": {
     "url": "https://github.com/widenhrzns/js_advanced/issues"
   },
-  "homepage": "https://github.com/widenhrzns/js_advanced#readme"
+  "homepage": "https://github.com/widenhrzns/js_advanced#readme",
+  "dependencies": {
+    "axios": "^1.7.9"
+  },
+  "devDependencies": {
+    "rollup": "^4.34.8"
+  }
 }
